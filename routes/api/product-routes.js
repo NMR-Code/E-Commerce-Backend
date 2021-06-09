@@ -39,7 +39,7 @@ router.get('/:id', async(req, res) => {
         });
         if (!productData) {
             res.status(404).json({
-                message: "Not Found. There is no product associated with the id that was provided."
+                message: "Invalid. There is no product matching that id."
             });
             return;
         } else {
