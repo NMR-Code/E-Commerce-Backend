@@ -21,8 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 
-sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () =>
-        console.log(` App listening on port ${PORT}! `));
-});
-module.exports = sequelize;
+app.listen(PORT, async () => {
+    try {
+      await sequelize.sync();
+      console.log("All models were seeded successfully.");
+      console.log(`App listening on port ${PORT}!`);
+    } catch (err) {
+      console.log(err);
+    }
+  });
